@@ -21,7 +21,7 @@
     return instance;
 }
 -(void)getAllData:(void(^)(NSArray * allData))theblock{
-    NSArray * array = @[@"第一条记录",@"第二条记录",@"第三条记录",@"第四条记录",@"第五条记录"];
+    NSArray * array = @[@"第一条记录",@"第二条记录",@"第三条记录",@"第四条记录",@"第五条记录",@"第六条记录"];
     theblock(array);
 }
 @end

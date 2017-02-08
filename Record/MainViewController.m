@@ -31,6 +31,7 @@
     [self.tempDataManager getAllData:^(NSArray *allData) {
         self.allData = allData;
     }];
+    
     [self initDragCellTableView];
     [self initMTableViewController];
 }

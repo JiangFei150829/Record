@@ -21,7 +21,11 @@
     return instance;
 }
 -(void)getAllData:(void(^)(NSArray * allData))theblock{
+    NSMutableArray * marr = [NSMutableArray arrayWithCapacity:1];
     NSArray * array = @[@"第一条记录",@"第二条记录",@"第三条记录",@"第四条记录",@"第五条记录",@"第六条记录"];
-    theblock(array);
+    [marr addObjectsFromArray:array];
+    [marr addObject:@"添加一条"];
+    NSArray * aarr = [NSArray arrayWithArray:marr];
+    theblock(aarr);
 }
 @end

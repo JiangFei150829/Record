@@ -27,6 +27,7 @@ static BGFMDB* BGFmdb;
     if (self) {
         // 0.获得沙盒中的数据库文件名
         NSString *filename = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:SQLITE_NAME];
+        NSLog(@"%@",filename);
         // 1.创建数据库队列
         self.queue = [FMDatabaseQueue databaseQueueWithPath:filename];
         NSLog(@"数据库初始化-----");

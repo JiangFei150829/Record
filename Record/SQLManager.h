@@ -12,4 +12,8 @@
 // 声明单例的类方法
 + (instancetype)sharedManager;
 -(void)createSQL:(void(^)(BOOL isSuccess))theBlock;
+-(void)insertIntoTableName:(NSDictionary *)dic;
+-(NSArray *)getAllInfo;
+-(void)updateInfo:(NSDictionary *)dic;
+-(void)deleteInfoWithID:(NSString *)myID;
 @end

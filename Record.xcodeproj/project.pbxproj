@@ -32,6 +32,7 @@
 		6BBDE4A81E4AA28700B3BD56 /* SideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBDE4A61E4AA28700B3BD56 /* SideTableViewCell.m */; };
 		6BBDE4A91E4AA28700B3BD56 /* SideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBDE4A71E4AA28700B3BD56 /* SideTableViewCell.xib */; };
 		6BBDE4AD1E4AC73E00B3BD56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6BBDE4AC1E4AC73E00B3BD56 /* .gitignore */; };
+		6BBDE4B01E4ACF4800B3BD56 /* DataEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBDE4AF1E4ACF4800B3BD56 /* DataEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		6BBDE4A61E4AA28700B3BD56 /* SideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideTableViewCell.m; sourceTree = "<group>"; };
 		6BBDE4A71E4AA28700B3BD56 /* SideTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideTableViewCell.xib; sourceTree = "<group>"; };
 		6BBDE4AC1E4AC73E00B3BD56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		6BBDE4AE1E4ACF4800B3BD56 /* DataEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntity.h; sourceTree = "<group>"; };
+		6BBDE4AF1E4ACF4800B3BD56 /* DataEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 			children = (
 				6B3C73BD1E49795300A8E45C /* TempData.h */,
 				6B3C73BE1E49795300A8E45C /* TempData.m */,
+				6BBDE4AE1E4ACF4800B3BD56 /* DataEntity.h */,
+				6BBDE4AF1E4ACF4800B3BD56 /* DataEntity.m */,
 				6B407FBB1E48771F00319D9D /* SQLManager.h */,
 				6B407FBC1E48771F00319D9D /* SQLManager.m */,
 				6B3C73BC1E4978BF00A8E45C /* MyHeader.h */,
@@ -449,6 +454,7 @@
 				6B3C73E11E49C5BE00A8E45C /* RTDragCellTableView.m in Sources */,
 				6B407FB31E48760A00319D9D /* FMDatabase.m in Sources */,
 				6BBDE4A81E4AA28700B3BD56 /* SideTableViewCell.m in Sources */,
+				6BBDE4B01E4ACF4800B3BD56 /* DataEntity.m in Sources */,
 				6B407FB51E48760A00319D9D /* FMDatabasePool.m in Sources */,
 				6B3C73B51E49768D00A8E45C /* BaseViewController.m in Sources */,
 				6B407FB71E48760A00319D9D /* FMResultSet.m in Sources */,

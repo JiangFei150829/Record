@@ -11,10 +11,12 @@
 #import "TempData.h"
 #import "SideTableViewCell.h"
 #import "RTDragCellTableView.h"
+#import "SQLManager.h"
+#import "DataEntity.h"
 #define HH [UIScreen mainScreen].bounds.size.height
 #define WW [UIScreen mainScreen].bounds.size.width
 @interface MainViewController ()<RTDragCellTableViewDataSource,RTDragCellTableViewDelegate>
-
+@property (nonatomic, strong)SQLManager * sqlManager;
 @property (nonatomic, strong) RTDragCellTableView *  dragCellTableView;
 @property (nonatomic, strong) Main2ViewController *  main2ViewController;
 @property (nonatomic, strong) UIView * viewForMain2View;
@@ -27,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+   
+    
     self.tempDataManager = [TempData sharedManager];
     [self.tempDataManager getAllData:^(NSArray *allData) {
         self.allData = allData;
@@ -34,11 +38,43 @@
     
     [self initDragCellTableView];
     [self initMTableViewController];
+    
+     [self SQLMedthod];
+}
+-(void)SQLMedthod{
+    //创建表
+    self.sqlManager = [SQLManager sharedManager];
+    [self.sqlManager createSQL:^(BOOL isSuccess) {
+        
+    }];
+    
+    NSArray * arrData = [self.sqlManager getAllInfo];
+    NSMutableArray * arrEntity = [NSMutableArray arrayWithCapacity:1];
+    for (NSDictionary * dicData in arrData) {
+      DataEntity * entity   = [[DataEntity alloc]initWithDic:dicData];
+     [arrEntity addObject:entity];
+    }
+    NSLog(@"%@",arrEntity);
+    
+    
+    
+    //插入数据
+    //[self.sqlManager insertIntoTableName:entity_1.getInfoDic];
+ 
+    //删除数据
+    //[self.sqlManager deleteInfoWithID:entity_1.getMyID];
+    
+    //修改数据
+    //NSDictionary * dic = @{@"myID":@"0002",@"starTime":@"4s4"};
+    //[self.sqlManager updateInfo:dic];
+    
+  
+    
 }
 -(void)initDragCellTableView{
  
     self.dragCellTableView = [[RTDragCellTableView alloc]init];
-    self.dragCellTableView.frame = CGRectMake(20, 100,WW*2/3,HH-200);
+    self.dragCellTableView.frame = CGRectMake(20, 0,WW*2/3,HH);
     self.dragCellTableView.allowsSelection = YES;
     [self.view addSubview:self.dragCellTableView];
     self.dragCellTableView.dataSource = self;

@@ -8,6 +8,7 @@
 
 #import "SQLManager.h"
 #import "BGFMDB.h"
+#import "DataEntity.h"
 #define TableName @"TableName_2"
 
 @implementation SQLManager
@@ -48,9 +49,20 @@
     }
 }
 -(NSArray *)getAllInfo{
-  NSArray* arr = [[BGFMDB intance] queryWithTableName:TableName];
+    NSArray* arr = [[BGFMDB intance] queryWithTableName:TableName];
+    NSMutableArray * marr = [NSMutableArray arrayWithCapacity:1];
+    for (NSDictionary * dic in arr) {
+        DataEntity * empty = [[DataEntity alloc]initWithDic:dic];
+        [marr addObject:empty];
+    }
+    //排序的描述
+    NSSortDescriptor * des = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+    NSArray * arrData = [NSArray new];//这一个数组应该存得是一个类 name 和 grade只是他的属性
+    
+    //按照描述进行排序
+    arrData=[marr sortedArrayUsingDescriptors:@[des]];
     //查询语句
-    return arr;
+    return arrData;
 }
 -(void)updateInfo:(NSDictionary *)dic{
     NSMutableArray* where = [NSMutableArray array];

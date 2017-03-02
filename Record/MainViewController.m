@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIView * viewForMain2View;
 @property (nonatomic, strong) TempData * tempDataManager;
 @property (nonatomic, strong) NSArray * allData;
+
 @end
 
 @implementation MainViewController
@@ -30,16 +31,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    
-    
-    self.tempDataManager = [TempData sharedManager];
-    [self.tempDataManager getAllData:^(NSArray *allData) {
-        self.allData = allData;
-    }];
-    
+    [self initAllData];
     [self initDragCellTableView];
     [self initMTableViewController];
-    
-     [self SQLMedthod];
+   
+}
+-(void)initAllData{
+
+    self.sqlManager = [SQLManager sharedManager];
+    [self.sqlManager createSQL:^(BOOL isSuccess) {
+        
+    }];
+    self.allData = [self.sqlManager getAllInfo];
 }
 -(void)SQLMedthod{
     //创建表
@@ -119,6 +122,7 @@
         
     }
     if (dragG.state == UIGestureRecognizerStateEnded) {
+        
         if (self.viewForMain2View.frame.origin.x<=WW/4) {
             self.viewForMain2View.center = self.view.center;
         }
@@ -146,15 +150,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SideTableViewCell * cell = [[SideTableViewCell alloc]initCellWithTableView:tableView];
-    [cell crateWith:self.allData[indexPath.row] andImage:[UIImage imageNamed:@"11.png"]];
+    DataEntity * empty = self.allData[indexPath.row];
+    
+    [cell crateWith:empty.getName andImage:[UIImage imageNamed:@"11.png"]];
     
     return cell;
 }
 - (NSArray *)originalArrayDataForTableView:(RTDragCellTableView *)tableView{
+   
     return self.allData;
 }
 
 - (void)tableView:(RTDragCellTableView *)tableView newArrayDataForDataSource:(NSArray *)newArray{
+    for (int i = 0; i<newArray.count; i++) {
+        DataEntity * entity = newArray[i];
+        [entity setNumberr:[NSString stringWithFormat:@"%d",i]];
+        [self.sqlManager updateInfo:entity.getInfoDic];
+    }
     self.allData = newArray;
 }
 
@@ -166,8 +178,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"CCC___%ld",(long)indexPath.row);
+   
     self.viewForMain2View.center = self.view.center;
     UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 @end

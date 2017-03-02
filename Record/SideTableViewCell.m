@@ -11,6 +11,7 @@
 @interface SideTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *myLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *myImageView;
+@property (weak, nonatomic) IBOutlet UIButton *updataButton;
 
 @end
 @implementation SideTableViewCell
@@ -33,6 +34,8 @@
     [self.myImageView setImage:image];
     self.myLabel.text = label;
     
+}
+- (IBAction)updateButtonClick:(UIButton *)sender {
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

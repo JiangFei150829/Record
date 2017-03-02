@@ -13,4 +13,7 @@
 -(instancetype)initWithName:(NSString *)name andNumber:(NSString *)number;
 -(NSDictionary *)getInfoDic;
 -(NSString *)getMyID;
+-(NSString *)getName;
+-(NSString *)getNumber;
+-(void)setNumberr:(NSString *)number;
 @end

@@ -24,11 +24,11 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self = [super init];
     if (self) {
+        self.myID = dic[@"myID"];
         self.number = dic[@"number"];
         self.name = dic[@"name"];
-        self.starTime = [NSString stringWithFormat:@"%@", [[NSDate alloc]init]];
-        self.myID = self.starTime;
-        self.updateTime = [[[NSArray alloc]init] arrayByAddingObject:self.starTime];
+        self.starTime = dic[@"starTime"];
+        self.updateTime = dic[@"updateTime"];
     }
     return self;
 }
@@ -43,9 +43,7 @@
     }
     return self;
 }
--(NSString *)getMyID{
-    return self.myID;
-}
+
 -(NSDictionary *)getInfoDic{
     NSMutableDictionary * mdic = [[NSMutableDictionary alloc]initWithCapacity:1];
     [mdic setObject:self.myID forKey:@"myID"];
@@ -54,5 +52,21 @@
     [mdic setObject:self.starTime forKey:@"starTime"];
     [mdic setObject:self.updateTime forKey:@"updateTime"];
     return [NSDictionary dictionaryWithDictionary:mdic];
+}
+-(NSString *)getMyID{
+    return self.myID;
+}
+-(NSString *)getName{
+    return self.name;
+}
+-(NSString *)getNumber{
+    return self.number;
+}
+-(void)setNumberr:(NSString *)number{
+    self.number = number;
+}
+
+-(NSString *)description{
+    return  [NSString stringWithFormat:@"%@ %@ %@ %@ %@",_myID,_name,_number,_starTime,_updateTime];
 }
 @end

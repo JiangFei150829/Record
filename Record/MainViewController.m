@@ -13,15 +13,17 @@
 #import "RTDragCellTableView.h"
 #import "SQLManager.h"
 #import "DataEntity.h"
+#import "DetailViewController.h"
 #define HH [UIScreen mainScreen].bounds.size.height
 #define WW [UIScreen mainScreen].bounds.size.width
-@interface MainViewController ()<RTDragCellTableViewDataSource,RTDragCellTableViewDelegate>
+@interface MainViewController ()<RTDragCellTableViewDataSource,RTDragCellTableViewDelegate,SideTableViewCellDelegate>
 @property (nonatomic, strong)SQLManager * sqlManager;
 @property (nonatomic, strong) RTDragCellTableView *  dragCellTableView;
 @property (nonatomic, strong) Main2ViewController *  main2ViewController;
 @property (nonatomic, strong) UIView * viewForMain2View;
 @property (nonatomic, strong) TempData * tempDataManager;
 @property (nonatomic, strong) NSArray * allData;
+@property (nonatomic, strong) UIButton * addButton;
 
 @end
 
@@ -30,11 +32,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    
     [self initAllData];
     [self initDragCellTableView];
     [self initMTableViewController];
    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self initAllData];
+    [self.dragCellTableView reloadData];
 }
 -(void)initAllData{
 
@@ -82,8 +88,18 @@
     [self.view addSubview:self.dragCellTableView];
     self.dragCellTableView.dataSource = self;
     self.dragCellTableView.delegate = self;
+    
+    self.addButton = [[UIButton alloc]initWithFrame:CGRectMake(20, HH-100, 100, 50)];
+    self.addButton.backgroundColor = [UIColor blueColor];
+    [self.addButton setTitle:@"添加新的" forState:UIControlStateNormal];
+    [self.addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.dragCellTableView addSubview:self.addButton];
+    
 }
-
+-(void)addButtonClick{
+    UIViewController * VC  = [self.storyboard instantiateViewControllerWithIdentifier:@"NewViewController"];
+    [self.navigationController pushViewController:VC animated:YES];   
+}
 -(void)initMTableViewController{
     self.viewForMain2View = [[UIView alloc]initWithFrame:CGRectMake(0, 0,WW,HH)];
     [self.view addSubview:self.viewForMain2View];
@@ -151,8 +167,8 @@
     
     SideTableViewCell * cell = [[SideTableViewCell alloc]initCellWithTableView:tableView];
     DataEntity * empty = self.allData[indexPath.row];
-    
-    [cell crateWith:empty.getName andImage:[UIImage imageNamed:@"11.png"]];
+    cell.delegate = self; 
+    [cell crateWith:empty.name andImage:[UIImage imageNamed:@"11.png"] andNumber:empty.number];
     
     return cell;
 }
@@ -164,8 +180,8 @@
 - (void)tableView:(RTDragCellTableView *)tableView newArrayDataForDataSource:(NSArray *)newArray{
     for (int i = 0; i<newArray.count; i++) {
         DataEntity * entity = newArray[i];
-        [entity setNumberr:[NSString stringWithFormat:@"%d",i]];
-        [self.sqlManager updateInfo:entity.getInfoDic];
+        entity.number = [NSString stringWithFormat:@"%d",i];
+        [self.sqlManager updateInfo:entity];
     }
     self.allData = newArray;
 }
@@ -180,8 +196,18 @@
     NSLog(@"CCC___%ld",(long)indexPath.row);
    
     self.viewForMain2View.center = self.view.center;
-    UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    DetailViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    vc.number =[NSString stringWithFormat:@"%d",(int)indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+#pragma mark 更新时间
+-(void)updateButtonClickDelegate:(int)row{
+    NSLog(@"%d",row);
+    DataEntity * entity = self.allData[row];
+    NSMutableArray * marr = [NSMutableArray arrayWithArray: entity.updateTimes];
+    NSDate * currentData = [[NSDate alloc]init];
+    [marr addObject:currentData];
+    entity.updateTimes = [NSArray arrayWithArray:marr];
+    [self.sqlManager updateInfo:entity];
+}
 @end

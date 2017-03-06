@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseViewController : UIViewController
-
+-(void)alertMessageWithTitle:(NSString*)title andMessage:(NSString*)message;
+-(NSDate *)stringToNSdate:(NSString *)stringDate;
+-(NSString *)dateToNSString:(NSDate *)date;
 @end

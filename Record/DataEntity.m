@@ -9,15 +9,7 @@
 #import "DataEntity.h"
 
 @interface DataEntity ()
-@property (nonatomic, strong) NSString * myID;
-//在Cell中的排序
-@property (nonatomic, strong) NSString * number;
-//记录的名字
-@property (nonatomic, strong) NSString * name;
-//记录开始的时间
-@property (nonatomic, strong) NSString * starTime;
-//记录刷新的时间
-@property (nonatomic, strong) NSArray * updateTime;
+
 @end
 @implementation DataEntity
 
@@ -28,18 +20,21 @@
         self.number = dic[@"number"];
         self.name = dic[@"name"];
         self.starTime = dic[@"starTime"];
-        self.updateTime = dic[@"updateTime"];
+        self.updateTimes = dic[@"updateTimes"];
     }
     return self;
 }
--(instancetype)initWithName:(NSString *)name andNumber:(NSString *)number{
+-(instancetype)initWithName:(NSString *)name{
     self = [super init];
     if (self) {
-        self.number = number;
+        self.number = @"0";
         self.name = name;
-        self.starTime = [NSString stringWithFormat:@"%@", [[NSDate alloc]init]];
-        self.myID = self.starTime;
-        self.updateTime = [[[NSArray alloc]init] arrayByAddingObject:self.starTime];
+        self.starTime = [[NSDate alloc]init];
+        NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+        NSString * strDate = [formatter stringFromDate:self.starTime];
+        self.myID = strDate;
+        self.updateTimes = [[[NSArray alloc]init] arrayByAddingObject:self.starTime];
     }
     return self;
 }
@@ -50,23 +45,12 @@
     [mdic setObject:self.number forKey:@"number"];
     [mdic setObject:self.name forKey:@"name"];
     [mdic setObject:self.starTime forKey:@"starTime"];
-    [mdic setObject:self.updateTime forKey:@"updateTime"];
+    [mdic setObject:self.updateTimes forKey:@"updateTimes"];
     return [NSDictionary dictionaryWithDictionary:mdic];
 }
--(NSString *)getMyID{
-    return self.myID;
-}
--(NSString *)getName{
-    return self.name;
-}
--(NSString *)getNumber{
-    return self.number;
-}
--(void)setNumberr:(NSString *)number{
-    self.number = number;
-}
+ 
 
 -(NSString *)description{
-    return  [NSString stringWithFormat:@"%@ %@ %@ %@ %@",_myID,_name,_number,_starTime,_updateTime];
+    return  [NSString stringWithFormat:@"%@ %@ %@ %@ %@",_myID,_name,_number,_starTime,_updateTimes];
 }
 @end

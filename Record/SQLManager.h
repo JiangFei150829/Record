@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DataEntity.h"
 @interface SQLManager : NSObject
 // 声明单例的类方法
 + (instancetype)sharedManager;
 -(void)createSQL:(void(^)(BOOL isSuccess))theBlock;
--(void)insertIntoTableName:(NSDictionary *)dic;
 -(NSArray *)getAllInfo;
--(void)updateInfo:(NSDictionary *)dic;
+-(void)updateInfo:(DataEntity *)entity;
 -(void)deleteInfoWithID:(NSString *)myID;
+-(void)insertIntoTableName:(DataEntity *)entity;
 @end

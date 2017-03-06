@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol SideTableViewCellDelegate;
 @interface SideTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) NSString * row;
+@property (nonatomic, strong) id<SideTableViewCellDelegate> delegate;
 -(instancetype)initCellWithTableView:(UITableView *)tableView;
--(void)crateWith:(NSString *)label andImage:(UIImage *)image;
+-(void)crateWith:(NSString *)label andImage:(UIImage *)image andNumber:(NSString *)number;
+
+
+@end
+@protocol SideTableViewCellDelegate <NSObject>
+
+-(void)updateButtonClickDelegate:(int)row;
+
 @end

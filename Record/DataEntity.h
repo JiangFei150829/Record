@@ -9,11 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface DataEntity : NSObject
+@property (nonatomic, strong) NSString * myID;
+//在Cell中的排序
+@property (nonatomic, strong) NSString * number;
+//记录的名字
+@property (nonatomic, strong) NSString * name;
+//记录开始的时间
+@property (nonatomic, strong) NSDate * starTime;
+//记录刷新的时间
+@property (nonatomic, strong) NSArray * updateTimes;
+
 -(instancetype)initWithDic:(NSDictionary *)dic;
--(instancetype)initWithName:(NSString *)name andNumber:(NSString *)number;
--(NSDictionary *)getInfoDic;
--(NSString *)getMyID;
--(NSString *)getName;
--(NSString *)getNumber;
--(void)setNumberr:(NSString *)number;
+-(instancetype)initWithName:(NSString *)name;
+//-(NSDictionary *)getInfoDic;
 @end

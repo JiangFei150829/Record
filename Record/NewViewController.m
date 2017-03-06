@@ -1,37 +1,38 @@
 //
-//  DetailViewController.m
+//  NewViewController.m
 //  Record
 //
-//  Created by tci100 on 2017/2/7.
+//  Created by tci100 on 2017/3/4.
 //  Copyright © 2017年 JiangFei. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "NewViewController.h"
 #import "SQLManager.h"
 #import "DataEntity.h"
-@interface DetailViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *firstTime;
-@property (weak, nonatomic) IBOutlet UILabel *lastTime;
+@interface NewViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (nonatomic, strong) SQLManager * sqlManager;
 @end
 
-@implementation DetailViewController
+@implementation NewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.sqlManager = [SQLManager sharedManager];
-    NSArray * arr = [self.sqlManager getAllInfo];
-    DataEntity * entity = arr[self.number.intValue];
-    self.name.text = entity.name;
-    self.firstTime.text = [self dateToNSString:entity.starTime];
-    self.lastTime.text =[self dateToNSString:entity.updateTimes.lastObject];
+}
+- (IBAction)saveButtonClick:(UIButton *)sender {
+    if (![self.nameTextField.text  isEqual: @" "]) {
+        DataEntity * entity = [[DataEntity alloc]initWithName:self.nameTextField.text];
+        [self.sqlManager insertIntoTableName:entity];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self alertMessageWithTitle:@"提示" andMessage:@"事件不能为空"];
+    }
+    
 }
 - (IBAction)backButtonClick:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
-}
-- (IBAction)deleteButtonClick:(UIButton *)sender {
 }
 
 - (void)didReceiveMemoryWarning {

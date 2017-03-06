@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface DetailViewController : BaseViewController
-
+@property (nonatomic, strong) NSString * number;
 @end

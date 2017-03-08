@@ -48,7 +48,6 @@
     [mdic setObject:self.updateTimes forKey:@"updateTimes"];
     return [NSDictionary dictionaryWithDictionary:mdic];
 }
- 
 
 -(NSString *)description{
     return  [NSString stringWithFormat:@"%@ %@ %@ %@ %@",_myID,_name,_number,_starTime,_updateTimes];

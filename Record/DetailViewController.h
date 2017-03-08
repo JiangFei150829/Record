@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "DataEntity.h"
 @interface DetailViewController : BaseViewController
-@property (nonatomic, strong) NSString * number;
+@property (nonatomic, strong) DataEntity * entityDetail;
 @end

@@ -197,7 +197,7 @@
    
     self.viewForMain2View.center = self.view.center;
     DetailViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    vc.number =[NSString stringWithFormat:@"%d",(int)indexPath.row];
+    vc.entityDetail = self.allData[(int)indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark 更新时间
@@ -209,5 +209,7 @@
     [marr addObject:currentData];
     entity.updateTimes = [NSArray arrayWithArray:marr];
     [self.sqlManager updateInfo:entity];
+    
+  //NSLog(@"%@",[self.sqlManager getInfoWithName:entity]);
 }
 @end

@@ -16,4 +16,5 @@
 -(void)updateInfo:(DataEntity *)entity;
 -(void)deleteInfoWithID:(NSString *)myID;
 -(void)insertIntoTableName:(DataEntity *)entity;
+-(DataEntity *)getInfoWithName:(DataEntity *)entity;
 @end

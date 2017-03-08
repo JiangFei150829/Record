@@ -29,6 +29,7 @@
 		6B407FB71E48760A00319D9D /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B407FB11E48760A00319D9D /* FMResultSet.m */; };
 		6B407FBA1E48766C00319D9D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B407FB91E48766C00319D9D /* libsqlite3.tbd */; };
 		6B407FBD1E48771F00319D9D /* SQLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B407FBC1E48771F00319D9D /* SQLManager.m */; };
+		6B63A0C81E6FA239002BE799 /* FyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B63A0C71E6FA239002BE799 /* FyCalendarView.m */; };
 		6B9C1F851E6A5275004DCC93 /* NewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9C1F841E6A5275004DCC93 /* NewViewController.m */; };
 		6BBDE4A81E4AA28700B3BD56 /* SideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBDE4A61E4AA28700B3BD56 /* SideTableViewCell.m */; };
 		6BBDE4A91E4AA28700B3BD56 /* SideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBDE4A71E4AA28700B3BD56 /* SideTableViewCell.xib */; };
@@ -98,6 +99,8 @@
 		6B407FB91E48766C00319D9D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6B407FBB1E48771F00319D9D /* SQLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLManager.h; sourceTree = "<group>"; };
 		6B407FBC1E48771F00319D9D /* SQLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLManager.m; sourceTree = "<group>"; };
+		6B63A0C61E6FA239002BE799 /* FyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FyCalendarView.h; sourceTree = "<group>"; };
+		6B63A0C71E6FA239002BE799 /* FyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FyCalendarView.m; sourceTree = "<group>"; };
 		6B9C1F831E6A5275004DCC93 /* NewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewViewController.h; sourceTree = "<group>"; };
 		6B9C1F841E6A5275004DCC93 /* NewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewViewController.m; sourceTree = "<group>"; };
 		6BBDE4A51E4AA28700B3BD56 /* SideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideTableViewCell.h; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 		6B407FA21E48760A00319D9D /* BGFMDB */ = {
 			isa = PBXGroup;
 			children = (
+				6B63A0C61E6FA239002BE799 /* FyCalendarView.h */,
+				6B63A0C71E6FA239002BE799 /* FyCalendarView.m */,
 				6B407FA31E48760A00319D9D /* BGFMDB.h */,
 				6B407FA41E48760A00319D9D /* BGFMDB.m */,
 				6B407FA51E48760A00319D9D /* libs */,
@@ -452,6 +457,7 @@
 				6B407FB61E48760A00319D9D /* FMDatabaseQueue.m in Sources */,
 				6B3C73B81E4976BD00A8E45C /* MainViewController.m in Sources */,
 				6B3C73D01E49B45A00A8E45C /* Main2ViewController.m in Sources */,
+				6B63A0C81E6FA239002BE799 /* FyCalendarView.m in Sources */,
 				6B3C73DA1E49B9CD00A8E45C /* DetailViewController.m in Sources */,
 				6B407FB21E48760A00319D9D /* BGFMDB.m in Sources */,
 				6B407F741E48758600319D9D /* AppDelegate.m in Sources */,

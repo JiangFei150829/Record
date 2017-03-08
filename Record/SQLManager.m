@@ -96,6 +96,32 @@
     //查询语句
     return arrData;
 }
+-(DataEntity *)getInfoWithName:(DataEntity *)entity{
+    NSMutableArray* where = [NSMutableArray array];
+    [where addObject: @"myID"];
+    [where addObject:@"="];
+    [where addObject: entity.myID];
+    NSArray * arr = [[BGFMDB intance] queryWithTableName:TableName keys:entity.getInfoDic.allKeys where:where];
+    NSDictionary * dic = arr[0];
+    
+    NSString * strr = dic[@"updateTimes"];
+    NSArray * strUpdateTimes = [strr componentsSeparatedByString:@"&&"];
+    NSMutableDictionary * newDic = [[NSMutableDictionary alloc]initWithCapacity:1];
+    [newDic setValue:dic[@"myID"] forKey:@"myID"];
+    [newDic setValue:dic[@"number"] forKey:@"number"];
+    [newDic setValue:dic[@"name"] forKey:@"name"];
+    NSDate * starTime = [self stringToNSdate:dic[@"starTime"]];
+    [newDic setValue: starTime forKey:@"starTime"];
+    
+    NSMutableArray * marrUpdateTimes = [NSMutableArray arrayWithCapacity:1];
+    for (NSString *  strUpdateTime in strUpdateTimes) {
+        NSDate * updateTime = [self stringToNSdate:strUpdateTime];
+        [marrUpdateTimes addObject:updateTime];
+    }
+    [newDic setValue:marrUpdateTimes forKey:@"updateTimes"];
+    DataEntity * returnEntity = [[DataEntity alloc]initWithDic:[NSDictionary dictionaryWithDictionary:newDic]];  
+    return returnEntity;
+}
 -(void)updateInfo:(DataEntity *)entity{
     NSMutableArray* where = [NSMutableArray array];
     [where addObject: @"myID"];

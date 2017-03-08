@@ -21,5 +21,5 @@
 
 -(instancetype)initWithDic:(NSDictionary *)dic;
 -(instancetype)initWithName:(NSString *)name;
-//-(NSDictionary *)getInfoDic;
+-(NSDictionary *)getInfoDic;
 @end
